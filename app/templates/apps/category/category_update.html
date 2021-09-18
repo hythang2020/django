@@ -1,0 +1,34 @@
+{% extends "base/base.html" %}
+
+{% block body %}
+<div class="container">
+    <div class="card shadow mt-4 mb-2">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Category: {{category.id}}</h6>
+        </div>
+        <div class="card-body">
+        <form method='POST'>
+            {% csrf_token %}
+            <div class="row">
+                <div class="form-control">
+                        <input type="text"
+                        name="" id="cat_id" value="{{category.id}}" hidden >            
+                        <label for="cat_name">Category Name:</label>        
+                        <input type="text"
+                            class="form-control" name="cat_name" id="cat_name" value="{{category.name}}">
+                    
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-6" style="text-align:end;">
+                    <button type="submit" class="btn btn-primary btn-block">Save</button>
+                </div>
+                <div class="col-6">
+                    <a href="{% url 'category_list' %}" class="btn btn-info" role="button">Canel</a>
+                </div>
+            </div>
+        </from>
+        </div>
+    </div> 
+</div>
+{% endblock body %}

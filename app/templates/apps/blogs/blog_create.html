@@ -1,0 +1,73 @@
+{% extends 'base/base.html'%}
+{% block body %}
+<div class="container">
+    <div class="card shadow mt-4 mb-2">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Blog Add</h6>
+        </div>
+        <div class="card-body">
+
+            <div class="row">
+                <div class="form-control mb-1">                  
+                        <label for="cat_name">Blog Name:</label>        
+                        <input type="text"
+                            class="form-control" name="" id="blog_name" placeholder="">
+                </div>
+                <div class="form-control mb-1">                  
+                        <label for="cat_name">Content Name:</label>
+                        <textarea class="form-control" id="blog_content" rows="10" ></textarea>        
+                </div>
+                <div class="form-control mb-1">                        
+                        <div class="form-group">
+                            <label for="">Category Name</label>
+                            <select class="form-control" name="" id="blog_cat">
+                                <option selected="0">Chose A Category</option>
+                                {% for cat in list_all_category %}
+                                <option value="{{cat.id}}">{{cat.name}}</option>
+                                {% endfor %}
+                                
+                            </select>
+                        </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-6" style="text-align:end;">
+                    <button onclick="create_blog()" class="btn btn-primary btn-block">Create</button>
+                </div>
+                <div class="col-6">
+                    <a href="{% url 'index' %}" class="btn btn-info" role="button">Canel</a>
+                </div>
+                
+            </div> 
+        </div>
+        
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script>
+    function create_blog(){
+        var name =$('#blog_name').val();
+        var content = $('#blog_content').val();
+        var cat = $('#blog_cat').val()
+        $.ajax({
+            url: "{% url 'create_blog' %}",
+            method: 'POST',
+            data: {
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+                'name' : name,
+                'content' : content,
+                'cat' : cat
+            },
+            success: function(result){
+                window.location = '/';
+            },
+            error: function(result){
+                console.error(result)
+            }
+        })
+    }
+</script>
+{% endblock script %}

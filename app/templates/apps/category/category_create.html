@@ -1,0 +1,53 @@
+{% extends "base/base.html" %}
+
+{% block body %}
+<div class="container">
+
+    <div class="card shadow mt-4 mb-2">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Category Add</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="form-control">                  
+                        <label for="cat_name">Category Name:</label>        
+                        <input type="text"
+                            class="form-control" name="" id="cat_name" placeholder="">
+                    <div id= 'message'> </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-6" style="text-align:end;">
+                    <button onclick="create_catgory()" class="btn btn-primary btn-block">Create</button>
+                </div>
+                <div class="col-6">
+                    <a href="{% url 'category_list' %}" class="btn btn-info" role="button">Canel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
+
+{% block script %}
+<script>
+    function create_catgory(){
+        var name =$('#cat_name').val();
+
+        $.ajax({
+            url: "{% url 'category_create_post' %}",
+            method: 'POST',
+            data: {
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+                'name' : name
+            },
+            success: function(result){
+                window.location = '/category';
+            },
+            error: function(result){
+                console.error(result)
+            }
+        })
+    }
+</script>
+{% endblock script %}

@@ -1,0 +1,82 @@
+{% extends "base/base.html" %}
+
+{% block body %}
+<div class="container">
+    <div class= "row">
+    <div class= "col-3">
+    <div class="card shadow mt-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Category List</h6>
+            </div>
+            <div class="card-body">
+                <div class="row mb">
+                    <div class="col-4">
+                        <label class="col-form-label" for="">Category: </label>
+                    </div>
+                    <div class="col-8">                     
+                            <select class="form-control" name="" id="blog_cat">
+                                <option selected="0">Chose A Category</option>
+                                {% for cat in list_all_category %}
+                                <option value="{{cat.id}}">{{cat.name}}</option>
+                                {% endfor %}
+                            </select>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class = "col-8">
+        <div class="card shadow mt-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Blog List</h6>
+            </div>
+            <div class="card-body">
+                <div class="row mb-1">
+                    <div class="col">
+                        <a href="{% url 'Blog_create' %}" class="btn btn-success rounded-pill" role="button"><i class="bi bi-plus-circle "></i> Add </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                            <thead>
+                                <tr role="row">
+                                    <th style="" >ID</th>
+                                    <th style="width: 300px;">Name</th>
+                                    <th style="">Content</th>
+                                    <th style="">Action </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for blog in list_all_blog %}
+                                    <tr>
+                                        <td id="blog_id" name="blog_id">
+                                            {{blog.id}}
+                                        </td>
+                                        <td>
+                                            {{blog.name}}
+                                        </td>
+                                        <td>
+                                            {{blog.content}}
+                                        </td>
+                                        <td>
+                                        <a class="btn btn-primary rounded-circle btn-sm" href="{% url 'blog_update' blog.id %}" title="Edit" role="button"><i class="bi bi-pencil"></i></a>
+                                        <a onClick="return confirm('DO YOU WAN\'T DELETE {{blog.name}} !!!')" class="btn btn-danger rounded-circle btn-sm " href="{% url 'deleteblog' blog.id %}" title="Delete" role="button"><i class="bi bi-x-circle"></i></a>    
+                                        </td>
+                                    </tr>
+                                {% endfor %}    
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>
+{% comment %} {% url 'update_category' category.id %} {% endcomment %}
+{% comment %} del --   {% url 'deletecategory' category.id %} {% endcomment %}
+
+
+{% endblock body %}
+
