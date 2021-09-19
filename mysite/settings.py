@@ -76,22 +76,22 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
+    #     'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'd4d7aojrkgntp5',
+    #     'USER': 'ebahgpccydtreb',
+    #     'PASSWORD': '61c52c9d02e8546ee429d0c3f8dad27383c32c2bcc08f885ecf4e9c7f6b8b64f',
+    #     'HOST': 'ec2-54-147-126-173.compute-1.amazonaws.com',
+    #     'PORT': '5432',
+    # }
         'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd4d7aojrkgntp5',
-        'USER': 'ebahgpccydtreb',
-        'PASSWORD': '61c52c9d02e8546ee429d0c3f8dad27383c32c2bcc08f885ecf4e9c7f6b8b64f',
-        'HOST': 'ec2-54-147-126-173.compute-1.amazonaws.com',
-        'PORT': '5432',
-    }
-        # 'default': {
-        #     'ENGINE': 'django.db.backends.postgresql',
-        #     'NAME': 'django',
-        #     'USER': 'postgres',
-        #     'PASSWORD': '123456',
-        #     'HOST': '127.0.0.1',
-        #     'PORT': '5432',
-        # }
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'django',
+            'USER': 'postgres',
+            'PASSWORD': '123456',
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
+        }
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
