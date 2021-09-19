@@ -2,6 +2,15 @@
 
 {% block body %}
 <div class="container">
+    <div class= "row">
+    <div class= "col-3">
+    <div class="card shadow mt-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Category : {{category.name}}</h6>
+            </div>
+        </div>
+    </div>
+    <div class = "col-8">
         <div class="card shadow mt-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Blog List</h6>
@@ -24,7 +33,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for blog in list_all_blog %}
+                                {% for blog in blog_by_category %}
                                     <tr>
                                         <td id="blog_id" name="blog_id">
                                             {{blog.id}}
@@ -45,10 +54,12 @@
                         </table>
                     </div>
                 </div>
-</div>
-{% comment %} {% url 'update_category' category.id %} {% endcomment %}
-{% comment %} del --   {% url 'deletecategory' category.id %} {% endcomment %}
+            </div>
+        </div>
+    </div>  
 
+
+</div>
 
 {% endblock body %}
 

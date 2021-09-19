@@ -12,9 +12,17 @@ class HomeView(TemplateView):
         context = super().get_context_data(*args,**kwargs)
         list_all_blog = Blog.objects.all()
         list_all_category = Category.objects.all()
-        context = {'list_all_blog' : list_all_blog, 'list_all_category' :list_all_category}
+        context = {'list_all_blog' : list_all_blog , 'list_all_category' : list_all_category}
         return context
         
+def blog_by_category(request,id):
+    list_all_category = Category.objects.all()
+    blog_by_category = Blog.objects.filter(category_id = id)
+    # lay thong tin category theo category 
+    # get : trả về danh sách 1 đối tượng 
+    # filter, all trả về danh sách tất cả các đối tượng 
+    category = Category.objects.get(id=id)
+    return render(request,'apps/blogs/blog_by_category.html',{'blog_by_category': blog_by_category,'category': category ,'list_all_category' : list_all_category})
 
 class BlogCreateView(TemplateView):
     template_name = "apps/blogs/blog_create.html"

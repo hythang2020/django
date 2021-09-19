@@ -15,7 +15,19 @@
             <a class="nav-link" href="{% url 'category_list' %}"> Category_List </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link disabled" href="#" aria-disabled="true">Pricing</a>
+            <div class="col-lg col-sm col-md col-6 flex-grow-0">
+                    <div class="category-wrap dropdown d-inline-block float-right">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-bars"></i> All category
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{% url 'index' %}">All products</a>
+                            {% for cat in list_all_category %}
+                                <a class="dropdown-item" href="{% url 'blog_by_category' cat.id  %} "> {{cat.name}} </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    </div>
         </li>
         <li class="nav-item">
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
